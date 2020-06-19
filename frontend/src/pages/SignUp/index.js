@@ -33,7 +33,7 @@ export default function SignUp() {
           placeholder="Sua senha secreta"
         />
 
-        <button type="submit">Crair conta</button>
+        <button type="submit">Criar conta</button>
         <Link to="/">Já tenho login</Link>
       </Form>
     </>

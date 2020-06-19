@@ -37,7 +37,7 @@ export const Content = styled.div`
       color: #fb6f91;
       align-self: flex-start;
       margin: 0 0 10px;
-      font-weight: border-left;
+      font-weight: bold;
     }
 
     button {

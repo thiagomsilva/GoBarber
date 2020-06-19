@@ -12,10 +12,10 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
-      <Route path="/register" exact component={SignUp} />
+      <Route path="/register" component={SignUp} />
 
-      <Route path="/dashboard" exact component={Dashboard} isPrivate />
-      <Route path="/profile" exact component={Profile} isPrivate />
+      <Route path="/dashboard" component={Dashboard} isPrivate />
+      <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );
 }
