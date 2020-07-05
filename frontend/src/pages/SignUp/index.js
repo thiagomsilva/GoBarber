@@ -1,23 +1,28 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import logo from '~/assets/logo.svg';
 
+import { signUpRequest } from '~/store/modules/auth/actions';
+
 const schema = Yup.object().shape({
-  name: Yup.string().required('O nome é obrigatório'),
+  name: Yup.string().required('Name is required'),
   email: Yup.string()
-    .email('insira um e-mail válido')
-    .required('O e-mail é obrigatório'),
+    .email('This e-mail does not look right')
+    .required('Email is required'),
   password: Yup.string()
-    .min(6, 'A senha deverá ter no mínimo 6 caracteres')
-    .required('A senha é obrigatória'),
+    .min(6, 'Minimun 6 charachateres')
+    .required('Password is required'),
 });
 
-export default function SignUp() {
-  function handleSubmit(data) {
-    console.tron.log(data);
+export default function SighUp() {
+  const dispatch = useDispatch();
+
+  function handleSubmit({ name, email, password }) {
+    dispatch(signUpRequest(name, email, password));
   }
 
   return (
@@ -25,7 +30,7 @@ export default function SignUp() {
       <img src={logo} alt="GoBarber" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="name" placeholder="Nome completo" />
+        <Input name="name" placeholder="Nome Completo" />
         <Input name="email" type="email" placeholder="Seu e-mail" />
         <Input
           name="password"
@@ -33,8 +38,8 @@ export default function SignUp() {
           placeholder="Sua senha secreta"
         />
 
-        <button type="submit">Criar conta</button>
-        <Link to="/">Já tenho login</Link>
+        <button type="submit">Criar Conta</button>
+        <Link to="/">Ja tenho uma conta</Link>
       </Form>
     </>
   );

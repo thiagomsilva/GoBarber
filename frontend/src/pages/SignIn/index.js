@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
@@ -10,17 +10,17 @@ import logo from '~/assets/logo.svg';
 
 const schema = Yup.object().shape({
   email: Yup.string()
-    .email('insira um e-mail válido')
-    .required('O e-mail é obrigatório'),
-  password: Yup.string().required('A senha é obrigatória'),
+    .email('This e-mail does not look right')
+    .required('Email is required'),
+  password: Yup.string().required('Password is required'),
 });
 
 export default function SignIn() {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.auth.loading);
 
-  function handleSubmit(email, password) {
+  function handleSubmit({ email, password }) {
     dispatch(signInRequest(email, password));
-    console.tron.log(email, password);
   }
 
   return (
@@ -35,8 +35,8 @@ export default function SignIn() {
           placeholder="Sua senha secreta"
         />
 
-        <button type="submit">Acessar</button>
-        <Link to="/register">Criar conta gratuita</Link>
+        <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
+        <Link to="/register">Criar uma conta gratuita</Link>
       </Form>
     </>
   );
