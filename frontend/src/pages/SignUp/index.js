@@ -9,13 +9,11 @@ import logo from '~/assets/logo.svg';
 import { signUpRequest } from '~/store/modules/auth/actions';
 
 const schema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  email: Yup.string()
-    .email('This e-mail does not look right')
-    .required('Email is required'),
+  name: Yup.string().required('Nome é obrigatório'),
+  email: Yup.string().email('E-mail inválido').required('E-mail é obrigatório'),
   password: Yup.string()
-    .min(6, 'Minimun 6 charachateres')
-    .required('Password is required'),
+    .min(6, 'Mínimo de 6 caracteres')
+    .required('Senha é obrigatória'),
 });
 
 export default function SighUp() {
